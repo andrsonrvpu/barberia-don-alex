@@ -34,11 +34,11 @@ export function ServiceCard({ title, description, image, imageClassName, service
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        <div className="absolute inset-0 bg-[var(--background)]/10 group-hover:bg-transparent transition-colors duration-700 z-10" />
+        <div className="absolute inset-0 bg-[var(--background)]/10 group-hover:bg-transparent group-active:bg-transparent transition-colors duration-700 z-10" />
         <img 
           src={image} 
           alt={title} 
-          className={`object-cover w-full h-full grayscale-[20%] transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] ${imageClassName ? imageClassName : "group-hover:grayscale-0 group-hover:scale-105"}`}
+          className={`object-cover w-full h-full grayscale-[20%] transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] ${imageClassName ? imageClassName : "group-hover:grayscale-0 group-hover:scale-105 group-active:grayscale-0 group-active:scale-105"}`}
         />
       </motion.div>
 

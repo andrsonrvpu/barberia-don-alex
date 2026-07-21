@@ -26,22 +26,22 @@ export function Hero() {
       <div className="container relative z-10 mx-auto px-4 md:px-8">
         <div className="max-w-3xl">
           <div className="relative inline-block mb-6 group -translate-y-8 md:translate-y-0">
-            <div className="absolute inset-0 bg-[var(--accent)]/20 blur-md rounded-full group-hover:bg-[var(--accent)]/40 transition-colors duration-500" />
+            <div className="absolute inset-0 bg-[var(--accent)]/20 blur-md rounded-full group-hover:bg-[var(--accent)]/40 group-active:bg-[var(--accent)]/40 transition-colors duration-500" />
             <motion.a
               href="https://www.google.com/maps/place/Barberia+Barber+Shop+Don+d'+Alex/@7.8859065,-72.4954275,17z/data=!4m6!3m5!1s0x8e66450ab0aa6ee1:0xb08b337f9ca65268!8m2!3d7.8877557!4d-72.4968544!16s%2Fg%2F11f29y0bfn?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/40 bg-[var(--background)]/80 px-4 py-1.5 text-xs font-semibold tracking-widest text-[var(--accent)] uppercase backdrop-blur-md hover:bg-[var(--accent)]/10 transition-colors cursor-pointer btn-luxury-border"
+              className="relative inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/40 bg-[var(--background)]/80 px-4 py-1.5 text-xs font-semibold tracking-widest text-[var(--accent)] uppercase backdrop-blur-md hover:bg-[var(--accent)]/10 active:bg-[var(--accent)]/10 transition-colors cursor-pointer btn-luxury-border"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
             >
-              <MapPin className="mr-2 h-3.5 w-3.5 text-[var(--accent)] group-hover:scale-125 group-hover:drop-shadow-[0_0_8px_var(--accent)] transition-all duration-300 relative z-10" strokeWidth={2.5} />
+              <MapPin className="mr-2 h-3.5 w-3.5 text-[var(--accent)] group-hover:scale-125 group-hover:drop-shadow-[0_0_8px_var(--accent)] group-active:scale-125 group-active:drop-shadow-[0_0_8px_var(--accent)] transition-all duration-300 relative z-10" strokeWidth={2.5} />
               <span className="text-xs sm:text-sm font-medium tracking-wider text-[var(--primary)] uppercase relative z-10">
                 Centro Comercial Ventura Plaza, Cúcuta
               </span>
               <span className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--accent)]/40 to-transparent w-[200%] animate-luxury-shine opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--accent)]/40 to-transparent w-[200%] animate-luxury-shine opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300" />
               </span>
             </motion.a>
           </div>
