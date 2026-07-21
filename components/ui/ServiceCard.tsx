@@ -78,7 +78,7 @@ export function ServiceCard({ title, description, image, imageClassName, service
                 hidden: { opacity: 0, y: 15 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 1, 0.5, 1] } }
               }}
-              className={`flex flex-col gap-1 pb-4 border-b border-[var(--border)] transition-colors duration-500 hover:border-[var(--accent)]/50 last:border-0 ${
+              className={`flex flex-col gap-1 pb-4 border-b border-[var(--border)] transition-colors duration-500 hover:border-[var(--accent)]/50 active:border-[var(--accent)]/50 last:border-0 ${
                 service.highlight 
                   ? "relative overflow-hidden bg-[var(--surface-1)] -mx-4 p-4 rounded-sm border border-[var(--accent)]/30 shadow-[0_0_20px_rgba(197,160,89,0.05)] border-b-0 mt-2" 
                   : ""
@@ -90,7 +90,7 @@ export function ServiceCard({ title, description, image, imageClassName, service
               )}
               
               <div className="flex justify-between items-baseline gap-4 relative z-10">
-                <span className={`font-medium transition-transform duration-300 origin-left hover:scale-[1.02] ${service.highlight ? "text-[var(--accent)] font-semibold text-lg" : "text-[var(--text-primary)]"}`}>
+                <span className={`font-medium transition-transform duration-300 origin-left hover:scale-[1.02] active:scale-[1.02] ${service.highlight ? "text-[var(--accent)] font-semibold text-lg" : "text-[var(--text-primary)]"}`}>
                   {service.name}
                 </span>
                 <div className="flex-1 border-b border-dashed border-[var(--border)]/50 mx-2 relative top-[-4px] hidden sm:block opacity-30" />

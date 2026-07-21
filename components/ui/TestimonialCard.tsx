@@ -13,7 +13,7 @@ export interface TestimonialCardProps {
 export function TestimonialCard({ name, role, content, image, index }: TestimonialCardProps) {
   return (
     <motion.div 
-      className="flex flex-col h-full relative transition-transform duration-500 hover:-translate-y-1 bg-[var(--surface-1)] p-8 rounded-lg border border-[var(--border)] shadow-lg"
+      className="flex flex-col h-full relative transition-transform duration-500 hover:-translate-y-1 active:-translate-y-1 bg-[var(--surface-1)] p-8 rounded-lg border border-[var(--border)] shadow-lg"
       initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
