@@ -11,7 +11,7 @@ import { MapPin } from "lucide-react"
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[60vh] lg:min-h-[75vh] items-start pt-12 md:pt-0 md:items-center overflow-hidden bg-[var(--background)]">
+    <section className="relative flex min-h-[60vh] lg:min-h-[75vh] items-center overflow-hidden bg-[var(--background)]">
       {/* Background Image / Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -25,7 +25,7 @@ export function Hero() {
 
       <div className="container relative z-10 mx-auto px-4 md:px-8">
         <div className="max-w-3xl">
-          <div className="relative inline-block mb-6 group">
+          <div className="relative inline-block mb-6 group -translate-y-8 md:translate-y-0">
             <div className="absolute inset-0 bg-[var(--accent)]/20 blur-md rounded-full group-hover:bg-[var(--accent)]/40 transition-colors duration-500" />
             <motion.a
               href="https://www.google.com/maps/place/Barberia+Barber+Shop+Don+d'+Alex/@7.8859065,-72.4954275,17z/data=!4m6!3m5!1s0x8e66450ab0aa6ee1:0xb08b337f9ca65268!8m2!3d7.8877557!4d-72.4968544!16s%2Fg%2F11f29y0bfn?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
