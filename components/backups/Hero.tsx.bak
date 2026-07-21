@@ -1,0 +1,80 @@
+"use client";
+
+import * as React from "react"
+import { Button } from "@/components/ui/Button"
+import Link from "next/link"
+import { motion } from "framer-motion"
+import { WHATSAPP_LINK } from "@/lib/constants"
+
+export function Hero() {
+  return (
+    <section className="relative flex min-h-[95vh] items-center overflow-hidden bg-[var(--background)]">
+      {/* Background Image / Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&q=80&w=2500" 
+          alt="Premium Barber Shop Interior" 
+          className="h-full w-full object-cover object-center opacity-30 mix-blend-luminosity"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--background)] via-[var(--background)]/90 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] to-transparent" />
+      </div>
+
+      <div className="container relative z-10 mx-auto px-4 md:px-8">
+        <div className="max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+          >
+            <span className="mb-6 inline-flex items-center rounded-full border border-[var(--accent)]/30 bg-[var(--surface-1)]/50 px-4 py-1.5 text-xs font-semibold tracking-widest text-[var(--accent)] uppercase backdrop-blur-sm shadow-[0_0_10px_rgba(197,160,89,0.1)]">
+              <span className="mr-2 h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+              Centro Comercial Ventura Plaza, Cúcuta
+            </span>
+          </motion.div>
+
+          <motion.h1 
+            className="mb-8 text-5xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-6xl md:text-7xl lg:text-8xl lg:leading-[1.1]"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 1, 0.5, 1] }}
+          >
+            Maestría en <br />
+            <span className="text-[var(--accent)] font-serif italic font-normal">cada detalle.</span>
+          </motion.h1>
+
+          <motion.p 
+            className="mb-12 max-w-xl text-lg text-[var(--text-secondary)] md:text-xl font-light leading-relaxed"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
+          >
+            Una experiencia de grooming diseñada para el hombre moderno. Cortes impecables, rituales de barba y un ambiente de exclusividad total.
+          </motion.p>
+          
+          <motion.div 
+            className="flex flex-col gap-4 sm:flex-row"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.45, ease: [0.25, 1, 0.5, 1] }}
+          >
+            <div className="relative animate-luxury-pulse">
+              <div className="absolute inset-0 bg-[var(--accent)]/20 blur-xl rounded-full" />
+              <Button size="lg" variant="accent" asChild className="relative w-full sm:w-auto h-14 px-10 rounded-sm uppercase tracking-widest text-xs font-bold overflow-hidden group">
+                <Link href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                  Agendar Cita Privada
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent w-[200%] animate-luxury-shine opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </Link>
+              </Button>
+            </div>
+            <Button size="lg" variant="outline" asChild className="w-full sm:w-auto h-14 px-10 rounded-sm uppercase tracking-widest text-xs font-bold border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--text-primary)] hover:bg-transparent">
+              <Link href="#servicios">
+                Descubrir Servicios
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}

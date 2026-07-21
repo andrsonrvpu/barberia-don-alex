@@ -1,0 +1,30 @@
+import * as React from "react";
+import { cn } from "@/lib/utils";
+
+interface LuxuryShineProps {
+  children: React.ReactNode;
+  className?: string;
+  intensity?: "light" | "medium" | "strong";
+}
+
+export function LuxuryShine({ children, className, intensity = "medium" }: LuxuryShineProps) {
+  const intensityMap = {
+    light: "via-[var(--accent)]/30",
+    medium: "via-[var(--accent)]/60",
+    strong: "via-[var(--accent)]",
+  };
+
+  return (
+    <span
+      className={cn(
+        "inline-flex animate-luxury-shine bg-[linear-gradient(110deg,#a1a1aa,45%,transparent,55%,#a1a1aa)] bg-[length:200%_100%] bg-clip-text text-transparent",
+        className
+      )}
+      style={{
+        backgroundImage: `linear-gradient(110deg, var(--text-secondary) 45%, var(--accent) 50%, var(--text-secondary) 55%)`
+      }}
+    >
+      {children}
+    </span>
+  );
+}
