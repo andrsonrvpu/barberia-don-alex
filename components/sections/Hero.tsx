@@ -46,48 +46,50 @@ export function Hero() {
             </motion.a>
           </div>
 
-          <motion.h1 
-            className="mb-6 text-4xl font-sans tracking-tighter text-[var(--text-primary)] sm:text-5xl md:text-7xl lg:text-8xl lg:leading-[1.1] md:mb-8"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 1, 0.5, 1] }}
-          >
-            <span className="font-light">El arte del</span> <br />
-            <span className="font-extrabold text-[var(--accent)] drop-shadow-[0_2px_15px_rgba(197,160,89,0.3)]">
-              corte perfecto.
-            </span>
-          </motion.h1>
+          <div className="translate-y-12 md:translate-y-0">
+            <motion.h1 
+              className="mb-6 text-4xl font-sans tracking-tighter text-[var(--text-primary)] sm:text-5xl md:text-7xl lg:text-8xl lg:leading-[1.1] md:mb-8"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 1, 0.5, 1] }}
+            >
+              <span className="font-light">El arte del</span> <br />
+              <span className="font-extrabold text-[var(--accent)] drop-shadow-[0_2px_15px_rgba(197,160,89,0.3)]">
+                corte perfecto.
+              </span>
+            </motion.h1>
 
-          <motion.p 
-            className="mb-8 max-w-xl text-sm leading-relaxed text-neutral-300 sm:text-base md:text-xl drop-shadow-md md:mb-12"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
-          >
-            Cortes impecables, arreglo de barba perfecto y atención de primer nivel. Disfruta de la mejor experiencia de barbería, pensada exclusivamente para tu estilo.
-          </motion.p>
-          
-          <motion.div 
-            className="flex flex-col gap-4 sm:flex-row"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.45, ease: [0.25, 1, 0.5, 1] }}
-          >
-            <div className="relative animate-luxury-pulse">
-              <div className="absolute inset-0 bg-[var(--accent)]/20 blur-xl rounded-full" />
-              <Button size="lg" variant="accent" asChild className="relative w-full sm:w-auto h-12 sm:h-14 px-8 sm:px-10 rounded-sm uppercase tracking-widest text-[10px] sm:text-xs font-bold overflow-hidden group">
-                <Link href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                  Agendar Cita Privada
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent w-[200%] animate-luxury-shine opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <motion.p 
+              className="mb-8 max-w-xl text-sm leading-relaxed text-neutral-300 sm:text-base md:text-xl drop-shadow-md md:mb-12"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
+            >
+              Cortes impecables, arreglo de barba perfecto y atención de primer nivel. Disfruta de la mejor experiencia de barbería, pensada exclusivamente para tu estilo.
+            </motion.p>
+            
+            <motion.div 
+              className="flex flex-col gap-4 sm:flex-row"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.45, ease: [0.25, 1, 0.5, 1] }}
+            >
+              <div className="relative animate-luxury-pulse">
+                <div className="absolute inset-0 bg-[var(--accent)]/20 blur-xl rounded-full" />
+                <Button size="lg" variant="accent" asChild className="relative w-full sm:w-auto h-12 sm:h-14 px-8 sm:px-10 rounded-sm uppercase tracking-widest text-[10px] sm:text-xs font-bold overflow-hidden group">
+                  <Link href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                    Agendar Cita Privada
+                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent w-[200%] animate-luxury-shine opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </Link>
+                </Button>
+              </div>
+              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto h-12 sm:h-14 px-8 sm:px-10 rounded-sm uppercase tracking-widest text-[10px] sm:text-xs font-bold border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--text-primary)] hover:bg-transparent">
+                <Link href="#servicios">
+                  Descubrir Servicios
                 </Link>
               </Button>
-            </div>
-            <Button size="lg" variant="outline" asChild className="w-full sm:w-auto h-12 sm:h-14 px-8 sm:px-10 rounded-sm uppercase tracking-widest text-[10px] sm:text-xs font-bold border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--text-primary)] hover:bg-transparent">
-              <Link href="#servicios">
-                Descubrir Servicios
-              </Link>
-            </Button>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
