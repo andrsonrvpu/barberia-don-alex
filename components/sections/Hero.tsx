@@ -11,7 +11,7 @@ import { MapPin } from "lucide-react"
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[60vh] lg:min-h-[75vh] items-center overflow-hidden bg-[var(--background)]">
+    <section className="relative flex min-h-[60vh] lg:min-h-[75vh] items-start pt-12 md:pt-0 md:items-center overflow-hidden bg-[var(--background)]">
       {/* Background Image / Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
