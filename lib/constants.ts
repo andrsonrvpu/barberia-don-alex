@@ -22,11 +22,11 @@ export const SERVICE_CATEGORIES = [
     image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=1600",
     imageClassName: "scale-[1.4] object-[center_30%] group-hover:grayscale-0 group-hover:scale-[1.45]",
     services: [
-      { name: "Barba básica", price: "$10.000" },
-      { name: "Barba ejecutivo", price: "$15.000" },
-      { name: "Barba premium", price: "$20.000" },
-      { name: "Pigmentación", price: "$10.000" },
-      { name: "Depilación (nasal/orejas)", price: "$15.000" },
+      { name: "Barba básica", price: "$10.000", details: "Delineado y perfilado esencial de barba." },
+      { name: "Barba ejecutivo", price: "$15.000", details: "Perfilado completo con toalla y paño caliente." },
+      { name: "Barba premium", price: "$20.000", details: "Afeitado e hidratación profunda con vapor de ozono." },
+      { name: "Pigmentación", price: "$10.000", details: "Tono uniforme y definición de contornos." },
+      { name: "Depilación (nasal/orejas)", price: "$15.000", details: "Retoque y limpieza estética suave." },
       { 
         name: "Ritual de la Barba", 
         price: "$30.000", 
