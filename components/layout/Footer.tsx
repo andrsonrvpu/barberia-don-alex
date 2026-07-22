@@ -48,11 +48,23 @@ export function Footer() {
               Síguenos
             </h4>
             <div className="flex gap-4">
-              <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-[var(--surface-2)] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              <a 
+                href={INSTAGRAM_LINK} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group relative p-2.5 rounded-full bg-[var(--surface-2)] text-[var(--text-secondary)] border border-transparent hover:border-[var(--accent)]/60 active:border-[var(--accent)] hover:text-[var(--accent)] active:text-[var(--accent)] hover:bg-[var(--accent)]/10 active:bg-[var(--accent)]/20 hover:shadow-[0_0_15px_rgba(197,160,89,0.4)] active:shadow-[0_0_15px_rgba(197,160,89,0.6)] hover:scale-110 active:scale-110 transition-all duration-300" 
+                aria-label="Instagram"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:scale-110 group-active:scale-110"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
               </a>
-              <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-[var(--surface-2)] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors" aria-label="Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              <a 
+                href={FACEBOOK_LINK} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group relative p-2.5 rounded-full bg-[var(--surface-2)] text-[var(--text-secondary)] border border-transparent hover:border-[var(--accent)]/60 active:border-[var(--accent)] hover:text-[var(--accent)] active:text-[var(--accent)] hover:bg-[var(--accent)]/10 active:bg-[var(--accent)]/20 hover:shadow-[0_0_15px_rgba(197,160,89,0.4)] active:shadow-[0_0_15px_rgba(197,160,89,0.6)] hover:scale-110 active:scale-110 transition-all duration-300" 
+                aria-label="Facebook"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:scale-110 group-active:scale-110"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
               </a>
             </div>
             
