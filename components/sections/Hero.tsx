@@ -4,12 +4,14 @@ import * as React from "react"
 import { Button } from "@/components/ui/Button"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { WHATSAPP_LINK, LOCATION_MAP_LINK } from "@/lib/constants"
+import { LOCATION_MAP_LINK } from "@/lib/constants"
+import { useBooking } from "@/context/BookingContext"
 import { LuxuryShine } from "@/components/ui/LuxuryShine"
 import { AnimatedText } from "@/components/ui/AnimatedText"
 import { MapPin } from "lucide-react"
 
 export function Hero() {
+  const { openBooking } = useBooking();
   return (
     <section className="relative flex min-h-[60vh] lg:min-h-[75vh] items-center overflow-hidden bg-[var(--background)]">
       {/* Background Image / Overlay */}
@@ -76,11 +78,14 @@ export function Hero() {
             >
               <div className="relative animate-luxury-pulse">
                 <div className="absolute inset-0 bg-[var(--accent)]/20 blur-xl rounded-full" />
-                <Button size="lg" variant="accent" asChild className="relative w-full sm:w-auto h-12 sm:h-14 px-8 sm:px-10 rounded-sm uppercase tracking-widest text-[10px] sm:text-xs font-bold overflow-hidden group">
-                  <Link href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                    Agendar Cita Privada
-                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent w-[200%] animate-luxury-shine opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </Link>
+                <Button 
+                  size="lg" 
+                  variant="accent" 
+                  onClick={() => openBooking()}
+                  className="relative w-full sm:w-auto h-12 sm:h-14 px-8 sm:px-10 rounded-sm uppercase tracking-widest text-[10px] sm:text-xs font-bold overflow-hidden group cursor-pointer"
+                >
+                  Agendar Cita Privada
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent w-[200%] animate-luxury-shine opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Button>
               </div>
               <Button size="lg" variant="outline" asChild className="w-full sm:w-auto h-12 sm:h-14 px-8 sm:px-10 rounded-sm uppercase tracking-widest text-[10px] sm:text-xs font-bold border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] active:border-[var(--accent)] active:text-[var(--accent)] hover:bg-transparent active:bg-transparent">

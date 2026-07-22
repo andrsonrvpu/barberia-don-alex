@@ -1,8 +1,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { WHATSAPP_LINK } from "@/lib/constants";
+import { useBooking } from "@/context/BookingContext";
 
 export interface ServiceItem {
   name: string;
@@ -21,14 +20,16 @@ export interface ServiceCardProps {
   index: number;
 }
 
-export function ServiceCard({ title, description, image, imageClassName, services, index }: ServiceCardProps) {
+export function ServiceCard({ id, title, description, image, imageClassName, services, index }: ServiceCardProps) {
   const isEven = index % 2 === 0;
+  const { openBooking } = useBooking();
 
   return (
     <div className={`flex flex-col gap-12 lg:gap-24 lg:items-center ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
       {/* Imagen */}
       <motion.div 
-        className="w-full lg:w-1/2 relative aspect-[4/5] md:aspect-square lg:aspect-[3/4] overflow-hidden group rounded-sm"
+        className="w-full lg:w-1/2 relative aspect-[4/5] md:aspect-square lg:aspect-[3/4] overflow-hidden group rounded-sm cursor-pointer"
+        onClick={() => openBooking({ categoryId: id })}
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -74,11 +75,12 @@ export function ServiceCard({ title, description, image, imageClassName, service
           {services.map((service, sIdx) => (
             <motion.div 
               key={sIdx} 
+              onClick={() => openBooking({ categoryId: id, serviceName: service.name })}
               variants={{
                 hidden: { opacity: 0, y: 15 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 1, 0.5, 1] } }
               }}
-              className={`flex flex-col gap-1 pb-4 border-b border-[var(--border)] transition-colors duration-500 hover:border-[var(--accent)]/50 active:border-[var(--accent)]/50 last:border-0 ${
+              className={`flex flex-col gap-1 pb-4 border-b border-[var(--border)] transition-colors duration-500 hover:border-[var(--accent)]/50 active:border-[var(--accent)]/50 last:border-0 cursor-pointer ${
                 service.highlight 
                   ? "relative overflow-hidden bg-[var(--surface-1)] -mx-4 p-4 rounded-sm border border-[var(--accent)]/30 shadow-[0_0_20px_rgba(197,160,89,0.05)] border-b-0 mt-2" 
                   : ""
@@ -108,10 +110,12 @@ export function ServiceCard({ title, description, image, imageClassName, service
         </motion.div>
 
         <div className="mt-12">
-          <Button variant="outline" asChild className="rounded-none uppercase tracking-widest text-xs font-bold border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] hover:bg-transparent active:border-[var(--accent)] active:text-[var(--accent)] active:bg-transparent px-8 h-12 w-full sm:w-auto">
-            <Link href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-              Reservar {title}
-            </Link>
+          <Button 
+            variant="outline" 
+            onClick={() => openBooking({ categoryId: id })}
+            className="rounded-none uppercase tracking-widest text-xs font-bold border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] hover:bg-transparent active:border-[var(--accent)] active:text-[var(--accent)] active:bg-transparent px-8 h-12 w-full sm:w-auto cursor-pointer"
+          >
+            Reservar {title}
           </Button>
         </div>
       </motion.div>

@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { Menu, X, Scissors } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { WHATSAPP_LINK } from "@/lib/constants";
+import { useBooking } from "@/context/BookingContext";
 
 import { motion } from "framer-motion";
 
@@ -17,6 +17,7 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { openBooking } = useBooking();
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--background)]/80 backdrop-blur-md">
@@ -57,10 +58,8 @@ export function Navbar() {
                 </motion.div>
               ))}
             </div>
-            <Button variant="accent" asChild>
-              <Link href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                Reserva Ahora
-              </Link>
+            <Button variant="accent" onClick={() => openBooking()}>
+              Reserva Ahora
             </Button>
           </div>
 
@@ -89,10 +88,15 @@ export function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <Button variant="accent" className="w-full" asChild>
-              <Link href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                Reserva Ahora
-              </Link>
+            <Button 
+              variant="accent" 
+              className="w-full" 
+              onClick={() => {
+                setIsOpen(false);
+                openBooking();
+              }}
+            >
+              Reserva Ahora
             </Button>
           </div>
         </div>
