@@ -4,7 +4,7 @@ import * as React from "react"
 import { Button } from "@/components/ui/Button"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { WHATSAPP_LINK } from "@/lib/constants"
+import { WHATSAPP_LINK, LOCATION_MAP_LINK } from "@/lib/constants"
 import { LuxuryShine } from "@/components/ui/LuxuryShine"
 import { AnimatedText } from "@/components/ui/AnimatedText"
 import { MapPin } from "lucide-react"
@@ -28,7 +28,7 @@ export function Hero() {
           <div className="relative inline-block mb-6 group -translate-y-8 md:translate-y-0">
             <div className="absolute inset-0 bg-[var(--accent)]/20 blur-md rounded-full group-hover:bg-[var(--accent)]/40 group-active:bg-[var(--accent)]/40 transition-colors duration-500" />
             <motion.a
-              href="https://www.google.com/maps/place/Barberia+Barber+Shop+Don+d'+Alex/@7.8859065,-72.4954275,17z/data=!4m6!3m5!1s0x8e66450ab0aa6ee1:0xb08b337f9ca65268!8m2!3d7.8877557!4d-72.4968544!16s%2Fg%2F11f29y0bfn?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+              href={LOCATION_MAP_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="relative inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/40 bg-[var(--background)]/80 px-4 py-1.5 text-xs font-semibold tracking-widest text-[var(--accent)] uppercase backdrop-blur-md hover:bg-[var(--accent)]/10 active:bg-[var(--accent)]/10 transition-colors cursor-pointer btn-luxury-border"

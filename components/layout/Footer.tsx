@@ -1,7 +1,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { Scissors, MapPin, Phone } from "lucide-react"
-import { INSTAGRAM_LINK, FACEBOOK_LINK } from "@/lib/constants"
+import { INSTAGRAM_LINK, FACEBOOK_LINK, LOCATION_MAP_LINK } from "@/lib/constants"
 
 export function Footer() {
   return (
@@ -27,13 +27,20 @@ export function Footer() {
               Ubicación y Contacto
             </h4>
             <ul className="flex flex-col space-y-3 text-sm text-[var(--text-secondary)]">
-              <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-[var(--accent)] shrink-0" />
-                <span>
-                  Centro Comercial Ventura Plaza<br />
-                  Tercer Piso, Local 3-14<br />
-                  Cúcuta, Colombia
-                </span>
+              <li>
+                <a 
+                  href={LOCATION_MAP_LINK} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="group flex items-start gap-3 hover:text-[var(--accent)] active:text-[var(--accent)] transition-colors duration-300 cursor-pointer"
+                >
+                  <MapPin className="h-5 w-5 text-[var(--accent)] shrink-0 group-hover:scale-110 group-active:scale-110 transition-transform duration-300" />
+                  <span>
+                    Centro Comercial Ventura Plaza<br />
+                    Tercer Piso, Local 3-14<br />
+                    Cúcuta, Colombia
+                  </span>
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-[var(--accent)] shrink-0" />

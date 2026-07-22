@@ -100,5 +100,7 @@ export const WHATSAPP_NUMBER = "570000000000";
 export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 export const INSTAGRAM_LINK = "https://instagram.com/barbershop_dondealex/";
 export const FACEBOOK_LINK = "https://facebook.com/Alexbarbershopoficial/";
+export const LOCATION_MAP_LINK = "https://maps.app.goo.gl/VrKfrb4rFwfWPdQo8";
+
 
 
