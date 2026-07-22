@@ -98,6 +98,7 @@ export const TESTIMONIALS = [
 
 export const WHATSAPP_NUMBER = "570000000000";
 export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
-export const INSTAGRAM_LINK = "https://www.instagram.com/barbershop_dondealex/";
-export const FACEBOOK_LINK = "https://web.facebook.com/Alexbarbershopoficial/?_rdc=1&_rdr#";
+export const INSTAGRAM_LINK = "https://instagram.com/barbershop_dondealex/";
+export const FACEBOOK_LINK = "https://facebook.com/Alexbarbershopoficial/";
+
 
