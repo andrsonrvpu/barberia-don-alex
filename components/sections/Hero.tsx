@@ -83,7 +83,7 @@ export function Hero() {
                   </Link>
                 </Button>
               </div>
-              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto h-12 sm:h-14 px-8 sm:px-10 rounded-sm uppercase tracking-widest text-[10px] sm:text-xs font-bold border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--text-primary)] hover:bg-transparent">
+              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto h-12 sm:h-14 px-8 sm:px-10 rounded-sm uppercase tracking-widest text-[10px] sm:text-xs font-bold border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] active:border-[var(--accent)] active:text-[var(--accent)] hover:bg-transparent active:bg-transparent">
                 <Link href="#servicios">
                   Descubrir Servicios
                 </Link>

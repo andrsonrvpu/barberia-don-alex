@@ -108,7 +108,7 @@ export function ServiceCard({ title, description, image, imageClassName, service
         </motion.div>
 
         <div className="mt-12">
-          <Button variant="outline" asChild className="rounded-none uppercase tracking-widest text-xs font-bold border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] hover:bg-transparent px-8 h-12 w-full sm:w-auto">
+          <Button variant="outline" asChild className="rounded-none uppercase tracking-widest text-xs font-bold border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] hover:bg-transparent active:border-[var(--accent)] active:text-[var(--accent)] active:bg-transparent px-8 h-12 w-full sm:w-auto">
             <Link href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
               Reservar {title}
             </Link>
