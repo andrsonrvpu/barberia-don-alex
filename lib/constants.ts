@@ -102,5 +102,9 @@ export const INSTAGRAM_LINK = "https://instagram.com/barbershop_dondealex/";
 export const FACEBOOK_LINK = "https://facebook.com/Alexbarbershopoficial/";
 export const LOCATION_MAP_LINK = "https://maps.app.goo.gl/VrKfrb4rFwfWPdQo8";
 
+export const GLOWMANAGE_SALON_ID = "vG9CUqEJwjsYiKBm4gVx";
+export const GLOWMANAGE_API_BASE_URL = "https://glowmanage.com/api/public";
+
+
 
 
