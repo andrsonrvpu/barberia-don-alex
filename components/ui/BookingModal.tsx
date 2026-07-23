@@ -45,7 +45,20 @@ function formatDateDisplay(dateStr: string) {
   });
 }
 
-export function BookingModal() {
+interface GlowStaff {
+  id: string;
+  name: string;
+  role?: string;
+}
+
+interface GlowService {
+  id: string;
+  name: string;
+  price?: number;
+  category?: string;
+}
+
+export const BookingModal: React.FC = () => {
   const {
     isOpen,
     selectedCategoryId,
@@ -59,6 +72,10 @@ export function BookingModal() {
   const [clientPhone, setClientPhone] = useState("");
   const [selectedDate, setSelectedDate] = useState(getTodayString());
   const [selectedTime, setSelectedTime] = useState("");
+
+  const [glowStaff, setGlowStaff] = useState<GlowStaff[]>([]);
+  const [glowServices, setGlowServices] = useState<GlowService[]>([]);
+  const [selectedStaffId, setSelectedStaffId] = useState<string>("");
 
   const dateInputRef = React.useRef<HTMLInputElement>(null);
 
@@ -86,13 +103,34 @@ export function BookingModal() {
     }
   }, [selectedCategoryId, currentCategory, selectedServiceName, setSelectedServiceName]);
 
-  // Reset form when modal opens
+  // Reset form & fetch salon staff/services when modal opens
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
       setBookingSuccess(false);
       setValidationError(null);
       setSelectedDate((prev) => prev || getTodayString());
+
+      let isMounted = true;
+      async function fetchSalonData() {
+        try {
+          const res = await fetch(`${GLOWMANAGE_API_BASE_URL}/salon?salonId=${GLOWMANAGE_SALON_ID}`);
+          if (res.ok) {
+            const data = await res.json();
+            if (isMounted) {
+              if (Array.isArray(data.staff)) setGlowStaff(data.staff);
+              if (Array.isArray(data.services)) setGlowServices(data.services);
+            }
+          }
+        } catch (err) {
+          console.warn("No se pudo cargar datos del salón de GlowManage:", err);
+        }
+      }
+      fetchSalonData();
+
+      return () => {
+        isMounted = false;
+      };
     } else {
       document.body.style.overflow = "unset";
     }
@@ -114,10 +152,10 @@ export function BookingModal() {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
         const data = await res.json();
-        const slots: string[] =
-          data?.slots ||
-          data?.availableSlots ||
-          (Array.isArray(data?.data) ? data.data : Array.isArray(data) ? data : []);
+        const rawSlots = (data?.slots || data?.availableSlots || (Array.isArray(data?.data) ? data.data : [])) as Array<string | { time?: string; label?: string }>;
+        const slots: string[] = rawSlots
+          .map((s) => (typeof s === "string" ? s : s?.time || s?.label))
+          .filter((s): s is string => Boolean(s));
 
         if (isMounted) {
           setAvailableSlots(slots);
@@ -129,7 +167,6 @@ export function BookingModal() {
         }
       } catch (err) {
         console.warn("Disponibilidad API GlowManage, aplicando horarios por defecto:", err);
-        // Fallback standard slots
         const defaultSlots = [
           "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
           "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00"
@@ -174,15 +211,38 @@ export function BookingModal() {
 
     setIsSubmitting(true);
 
-    const payload = {
+    // Match requested service against GlowManage registered service IDs
+    const categoryName = currentCategory.title.toLowerCase();
+    const serviceName = activeService.name.toLowerCase();
+
+    let matchedGlowService = glowServices.find((gs) => {
+      const gName = gs.name.toLowerCase();
+      return serviceName.includes(gName) || gName.includes(serviceName);
+    });
+
+    if (!matchedGlowService) {
+      if (categoryName.includes("barba")) {
+        matchedGlowService = glowServices.find((gs) => gs.name.toLowerCase().includes("barba"));
+      } else {
+        matchedGlowService = glowServices.find((gs) => gs.name.toLowerCase().includes("corte"));
+      }
+    }
+
+    const finalServiceId = matchedGlowService?.id || glowServices[0]?.id || "NKePNsDzVmrkozvCINGI";
+
+    const payload: Record<string, string> = {
       salonId: GLOWMANAGE_SALON_ID,
       clientName: clientName.trim(),
       clientPhone: clientPhone.trim(),
-      serviceId: activeService.name,
+      serviceId: finalServiceId,
       date: selectedDate,
       startTime: selectedTime,
-      notes: "Reserva desde la página web",
+      notes: `Reserva desde la página web - Servicio: ${activeService.name}`,
     };
+
+    if (selectedStaffId) {
+      payload.staffId = selectedStaffId;
+    }
 
     try {
       const res = await fetch(`${GLOWMANAGE_API_BASE_URL}/appointments`, {
@@ -195,16 +255,15 @@ export function BookingModal() {
 
       const data = await res.json().catch(() => ({}));
 
-      if (res.ok || data.success === true) {
+      if (res.ok && data.success !== false) {
         setBookingSuccess(true);
       } else {
-        // Even if API returns non-200 in dev/CORS, treat cleanly or notify user
-        setBookingSuccess(true);
+        const errorMsg = data?.error || data?.message || "No se pudo registrar la cita en GlowManage.";
+        setValidationError(errorMsg);
       }
     } catch (err) {
-      console.warn("Enviando reserva:", err);
-      // Success fallback
-      setBookingSuccess(true);
+      console.error("Error enviando reserva:", err);
+      setValidationError("Error de conexión al intentar guardar la cita en GlowManage.");
     } finally {
       setIsSubmitting(false);
     }
@@ -461,6 +520,26 @@ export function BookingModal() {
                       className="w-full px-3.5 py-2.5 rounded-md bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text-primary)] text-sm placeholder:text-neutral-500 focus:outline-none focus:border-[var(--accent)] transition-colors"
                     />
                   </div>
+                </div>
+
+                {/* 4. Barbero / Especialista (Opcional) */}
+                <div className="pt-2 border-t border-[var(--border)]/60">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)] mb-1.5 flex items-center gap-1.5">
+                    <Scissors className="h-3.5 w-3.5 text-[var(--accent)]" />
+                    Barbero / Especialista <span className="text-[10px] text-neutral-400 font-normal lowercase">(opcional)</span>
+                  </label>
+                  <select
+                    value={selectedStaffId}
+                    onChange={(e) => setSelectedStaffId(e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-md bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors cursor-pointer"
+                  >
+                    <option value="">-- Cualquier barbero disponible --</option>
+                    {glowStaff.map((staff) => (
+                      <option key={staff.id} value={staff.id}>
+                        {staff.name.trim()} {staff.role ? `(${staff.role.trim()})` : ""}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 {/* 4. Date Picker & Slots */}
