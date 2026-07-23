@@ -20,7 +20,6 @@ import {
   SERVICE_CATEGORIES,
   WHATSAPP_NUMBER,
   GLOWMANAGE_SALON_ID,
-  GLOWMANAGE_API_BASE_URL,
 } from "@/lib/constants";
 import { useBooking } from "@/context/BookingContext";
 import { Button } from "@/components/ui/Button";
@@ -114,7 +113,7 @@ export const BookingModal: React.FC = () => {
       let isMounted = true;
       async function fetchSalonData() {
         try {
-          const res = await fetch(`${GLOWMANAGE_API_BASE_URL}/salon?salonId=${GLOWMANAGE_SALON_ID}`);
+          const res = await fetch(`/api/salon?salonId=${GLOWMANAGE_SALON_ID}`);
           if (res.ok) {
             const data = await res.json();
             if (isMounted) {
@@ -123,7 +122,7 @@ export const BookingModal: React.FC = () => {
             }
           }
         } catch (err) {
-          console.warn("No se pudo cargar datos del salón de GlowManage:", err);
+          console.warn("No se pudo cargar datos del salón:", err);
         }
       }
       fetchSalonData();
@@ -147,7 +146,7 @@ export const BookingModal: React.FC = () => {
     async function fetchAvailability() {
       setLoadingSlots(true);
       try {
-        const url = `${GLOWMANAGE_API_BASE_URL}/availability?salonId=${GLOWMANAGE_SALON_ID}&date=${selectedDate}`;
+        const url = `/api/availability?salonId=${GLOWMANAGE_SALON_ID}&date=${selectedDate}`;
         const res = await fetch(url);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
@@ -245,7 +244,7 @@ export const BookingModal: React.FC = () => {
     }
 
     try {
-      const res = await fetch(`${GLOWMANAGE_API_BASE_URL}/appointments`, {
+      const res = await fetch("/api/appointments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
