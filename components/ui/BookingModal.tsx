@@ -60,6 +60,8 @@ export function BookingModal() {
   const [selectedDate, setSelectedDate] = useState(getTodayString());
   const [selectedTime, setSelectedTime] = useState("");
 
+  const dateInputRef = React.useRef<HTMLInputElement>(null);
+
   const [availableSlots, setAvailableSlots] = useState<string[]>([]);
   const [loadingSlots, setLoadingSlots] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -462,19 +464,58 @@ export function BookingModal() {
                 </div>
 
                 {/* 4. Date Picker & Slots */}
-                <div className="pt-2 border-t border-[var(--border)]/60 space-y-3">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)] flex items-center gap-1.5">
+                <div className="pt-2 border-t border-[var(--border)]/60 space-y-4">
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)] mb-2 flex items-center gap-1.5">
                       <Calendar className="h-3.5 w-3.5 text-[var(--accent)]" />
                       Fecha de la Cita <span className="text-red-400">*</span>
                     </label>
-                    <input
-                      type="date"
-                      min={getTodayString()}
-                      value={selectedDate}
-                      onChange={(e) => setSelectedDate(e.target.value)}
-                      className="px-3 py-1.5 rounded-md bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text-primary)] text-xs font-medium focus:outline-none focus:border-[var(--accent)] transition-colors cursor-pointer"
-                    />
+
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                      {/* Prominent Date Input Container */}
+                      <div className="relative flex-1 flex items-center">
+                        <input
+                          ref={dateInputRef}
+                          type="date"
+                          min={getTodayString()}
+                          value={selectedDate}
+                          onChange={(e) => setSelectedDate(e.target.value)}
+                          className="[color-scheme:dark] w-full px-4 py-2.5 rounded-md bg-[var(--surface-2)] border-2 border-[var(--accent)]/50 text-[var(--text-primary)] text-sm font-semibold tracking-wide focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] transition-all cursor-pointer [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:scale-125 [&::-webkit-calendar-picker-indicator]:p-1 [&::-webkit-calendar-picker-indicator]:rounded"
+                        />
+                      </div>
+
+                      {/* Quick Date Pills */}
+                      <div className="flex items-center gap-1.5">
+                        {[
+                          { label: "Hoy", offset: 0 },
+                          { label: "Mañana", offset: 1 },
+                          { label: "Pasado Mañana", offset: 2 },
+                        ].map((qDate) => {
+                          const dateObj = new Date();
+                          dateObj.setDate(dateObj.getDate() + qDate.offset);
+                          const year = dateObj.getFullYear();
+                          const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                          const day = String(dateObj.getDate()).padStart(2, "0");
+                          const qDateStr = `${year}-${month}-${day}`;
+                          const isSelected = selectedDate === qDateStr;
+
+                          return (
+                            <button
+                              key={qDate.label}
+                              type="button"
+                              onClick={() => setSelectedDate(qDateStr)}
+                              className={`px-3 py-2 rounded-md text-xs font-medium border transition-all whitespace-nowrap ${
+                                isSelected
+                                  ? "bg-[var(--accent)] text-black border-[var(--accent)] font-bold shadow-[0_0_10px_rgba(197,160,89,0.3)]"
+                                  : "bg-[var(--surface-2)] border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)]/50"
+                              }`}
+                            >
+                              {qDate.label}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
 
                   {/* Slot selector */}
